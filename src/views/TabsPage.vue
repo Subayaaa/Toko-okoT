@@ -8,6 +8,11 @@
           <ion-label>Beranda</ion-label>
         </ion-tab-button>
 
+        <ion-tab-button tab="transaction" href="/tabs/transaction">
+          <ion-icon aria-hidden="true" :icon="cartOutline" />
+          <ion-label>Transaksi</ion-label>
+        </ion-tab-button>
+
         <ion-tab-button tab="tab2" href="/tabs/tab2">
           <ion-icon aria-hidden="true" :icon="logoDropbox" />
           <ion-label>Barang</ion-label>
@@ -24,5 +29,5 @@
 
 <script setup lang="ts">
 import { IonTabBar, IonTabButton, IonTabs, IonLabel, IonIcon, IonPage, IonRouterOutlet } from '@ionic/vue';
-import { home, logoDropbox, personSharp } from 'ionicons/icons';
+import { cartOutline, home, logoDropbox, personSharp } from 'ionicons/icons';
 </script>

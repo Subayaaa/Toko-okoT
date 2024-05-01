@@ -23,10 +23,36 @@ import '@ionic/vue/css/display.css';
 /* Theme variables */
 import './theme/variables.css';
 
+/* Import Global CSS */
+import './theme/global.css'
+
+import { axios } from "./services/axios";
+import { token, user } from "./services/user";
+import * as VueQrcodeReader from 'vue-qrcode-reader';
+
 const app = createApp(App)
   .use(IonicVue)
-  .use(router);
-  
-router.isReady().then(() => {
-  app.mount('#app');
-});
+  .use(router)
+  .use(VueQrcodeReader)
+
+axios.get('auth')
+  .then(result => {
+    const data = result.data?.value
+    const mess = result.data.mess
+    const isError = result.data.isError
+
+    if (isError) {
+      user.value = null
+      token.value = ''
+      return
+    }
+
+    user.value = data
+    // console.log(user.value)
+  }).catch(error => {
+
+  }).finally(() => {
+    router.isReady().then(() => {
+      app.mount('#app');
+    })
+  })
